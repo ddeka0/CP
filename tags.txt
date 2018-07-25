@@ -1,0 +1,25 @@
+combinatorics
+hashing
+strings
+binary search
+dynamic programming
+constructive algorithm
+maths
+greedy
+implementation
+sorting
+trees
+data structure
+graphs
+number theory
+dsu
+trees
+dfs and similar
+two pointers
+flows
+geometry
+bitmask
+probability
+matrics
+shortest pathsa
+divide and conquere
