@@ -148,6 +148,7 @@ void execute_cmd() {
 	vector<string> commands[100];
 	// parse the commands one by one and store inside the array commands
 	
+	
 	int command_count = 0;
 	cout <<"xxxxxxxx : "<<executable_cmd.size() << endl;
 	bool at_least_one = false;
