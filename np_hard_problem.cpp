@@ -28,3 +28,7 @@ int main() {
 	solve();
 	return 0;
 }
+
+void solve() {
+	
+}
