@@ -10,8 +10,10 @@ public:
             for(int row = 1;row<=m;row++) {
                 if(col == 1) {
                     dp[row] = dp[row - 1] + grid[row - 1][col - 1];
+                }else if(row == 1) {
+                    dp[row] += grid[row - 1][col - 1];
                 }else {
-                    dp[row] = min( dp[row] , dp[row - 1] ) + grid[row - 1][col - 1];
+                    dp[row] = min( dp[row] , dp[row - 1]) + grid[row - 1][col - 1];
                 }
             }
         }
