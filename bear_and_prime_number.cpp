@@ -14,6 +14,7 @@ int main() {
 				prime[i * j] = i;
 			}
 		}
+		
 	}
 	for(int i = 2;i<N;i++) {
 		if(prime[i] == 0) prime[i] = i;
