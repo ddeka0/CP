@@ -32,6 +32,10 @@ const int N = (int)1e5 + 10;
 int prime[N];
 int a[N];
 int dp[N];
+// lets suppose we are at index i
+// x is a prime factor
+// dp[x] maximum length of seq that we can achieve
+// using x as a key
 void solve() {
     int n;
     cin >> n;
@@ -64,6 +68,12 @@ void solve() {
         }
         for(int e:p) {
             dp[e] = max(dp[e],val);     // imp
+            // lets suppose we arrive at a[i] with prime 2,3, and 11
+            // and lengths are 4,8,3
+            // therefore using 3 we get the maximum length sequence ending at a[i]
+            // and a[i] has all these factors 2,3,11
+            // therefrom using 2,3 and 11 we can reach a maximum seq length of 8
+            // so make d[2] = dp[3] = dp[11] = 8
             //show(dp[e]);
         }   
         p.clear();
