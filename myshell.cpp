@@ -47,7 +47,7 @@ void sigchld_handler(int signum) {
     pid_t pid;
     int   status;
     while ((pid = waitpid(-1, &status, WNOHANG)) != -1) {
-		print_info(pid_to_name[pid] + " collected ny parent !");
+		print_info(pid_to_name[pid] + " collected by my parent !");
         //unregister_child(pid, status);   // Or whatever you need to do with the PID
     }
 }
@@ -130,6 +130,7 @@ void start_single_cmd(vector<string> cmd) { // a command as a vector of strings
 	exit(EXIT_FAILURE);
 }
 void execute_cmd() {
+	cout <<" inside execute command "<<endl;
 	// we are assuiming that user inputs sensible commands separated by only &/&&/&&&
 	bool is_background_char_exits = (find(executable_cmd.begin(), 
 										executable_cmd.end(),
@@ -150,13 +151,13 @@ void execute_cmd() {
 	
 	
 	int command_count = 0;
-	cout <<"xxxxxxxx : "<<executable_cmd.size() << endl;
+	//cout <<"xxxxxxxx : "<<executable_cmd.size() << endl;
 	bool at_least_one = false;
 	for(int i = 0;i<(int)(executable_cmd.size());i++) {
 		cout <<"ji "<<executable_cmd[i] <<endl;
 		if(!is_operator(executable_cmd[i])) {
 			at_least_one = true;
-			cout <<"fuck"<<endl;
+			//cout <<"fuck"<<endl;
 			commands[command_count].push_back(executable_cmd[i]);
 		}else {
 			command_count++;
@@ -166,14 +167,15 @@ void execute_cmd() {
 	if(at_least_one && !is_background_char_exits) {
 		command_count++;
 	}
-	cout <<" no of commands : "<<command_count <<endl;
+	//cout <<" no of commands : "<<command_count <<endl;
 	if(command_count == 0) {
-		cout << "ccccccccccc " <<endl;
+		//cout << "ccccccccccc " <<endl;
 		return;
 	}
 	if(is_series_char_exits) { 	// these will be foreground commands
 								// for example ls -all && ./a.out && ps && htop
 								// here we have a total of 4 commands separated by &&
+		cout <<" xx "<<endl;
 		for(int i = 0;i<command_count;i++) {
 			int status;
 			pid_t pid = fork();
@@ -189,6 +191,7 @@ void execute_cmd() {
 		}
 		return;
 	}else if(is_parallel_char_exits) {
+		cout <<" yy "<<endl;
 		for(int i = 0;i<command_count;i++) {
 			pid_t pid = fork();
 			active_pids.insert(pid);			// this pid is stored now
@@ -200,7 +203,10 @@ void execute_cmd() {
 			pid_to_name[pid] = command_to_string(commands[i]); // link this pid to the process name or command 
 		}		
 	}else if(is_background_char_exits) {
+
+		
 		print_info("inside background if clause ");
+		
 		pid_t pid = fork();
 		active_pids.insert(pid);			// this pid is stored now
 		if(pid == 0) {
@@ -229,10 +235,8 @@ int main() {
 	signal(SIGINT,SIG_IGN);
 	signal(SIGCHLD,sigchld_handler);
 	while(true) {
-		//check_for_active_pids(); // try to RIP the childs
-		cout <<green<<"cs744>"<<reset<<endl;
+		cout <<green<<"cs744>"<<reset;
 		getline(cin,user_cmd);
-
 		parse_cmd();
 		if(check_cmd()) {
 			execute_cmd();
