@@ -1,12 +1,3 @@
-/* 
-	G(n)= G(n-1) + 3*G(n-2) + 3*G(n-3) + G(n-4)
-	G(1)=1
-	G(2)=3
-	G(3)=3
-	G(4)=1
-	1 ≤ t ≤ 10000
-	1 ≤ n ≤ 10^18 
-*/
 #include <bits/stdc++.h>
 using namespace std;
 template<typename T>
@@ -54,7 +45,7 @@ void inv_factorials(long long M) {
 	rf[m] = modpow(f[m],M-2,M);
 	for(int i = m - 1;i>=0;i--) {rf[i] = (rf[i+1]*(i+1))%M;}
 }
-long long C(int _n,int _r,long long M) {return (_r <0 || _r > _n)?0 : f[_n]*rf[_r]%M*rf[_n - _r]%M; }
+long long C(int _n,int _r,long long M) {return (_r <0 || _r > _n)?0 : f[_n]*rf[_r]%M*rf[_n - _r]%M; }   
 void solve();
 int main() {
 	ios_base::sync_with_stdio(NULL);
@@ -62,39 +53,6 @@ int main() {
 	solve();
 	return 0;
 }
-// returns the N-th term of Fibonacci sequence
-int fib(LL N) {
-    // create vector F1
-    vector<LL> F1(K+1);
-	LL M = 10000007;
-    F1[1] = 1;
-    F1[2] = 3;
-    F1[3] = 3;
-    F1[4] = 1;
-    // create matrix T
-    matrix T(K+1, vector<LL>(K+1));
-    T[1][1] = 0, T[1][2] = 1,T[1][3] = 0,T[1][4] = 0;
-    T[2][1] = 0, T[2][2] = 0,T[2][3] = 1,T[2][4] = 0;
-    T[3][1] = 0, T[3][2] = 0,T[3][3] = 0,T[3][4] = 1;
-    T[4][1] = 1, T[4][2] = 3,T[4][3] = 3,T[4][4] = 1;
-    // raise T to the (N-1)th power
-    if (N == 1)
-        return 1;
-    T = mat_pow(T, N-1,M);
-    // the answer is the first row of T . F1
-    LL res = 0;
-	for(int i = 1;i<=K;i++) {
-        res = (res + T[1][i] * F1[i]) % M;
-	}
-    return res;
-}
 void solve() {
-    LL T;
-    LL n;
-    cin >> T;
-    LL M = 10000007;
-	for(int q = 1;q<=T;q++) {
-		cin >> n;
-		cout << fib(n)%M<<endl;    
-    }
+
 }

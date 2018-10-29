@@ -32,8 +32,10 @@ int main() {
 #define inf 1e15
 #define ff first
 #define ss second
+
 vector<pair<int,int>> g[100009];
 set<pair<int,int>> Heap;
+
 void solve() {
 	int n,m;
 	cin >> n;
@@ -47,6 +49,7 @@ void solve() {
 	std::vector<int> paren(n + 1,-1);
 	d[1] = 0;
 	Heap.insert(make_pair(0,1));
+	
 	while(!Heap.empty()) {
 		auto e = *(Heap.begin());
 		Heap.erase(Heap.begin());

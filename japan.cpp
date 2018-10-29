@@ -15,6 +15,7 @@ int main() {
     solve();
     return 0;
 }
+
 long long bt[1001];
 int n,m,k;
 long long query(int idx) {
@@ -31,6 +32,7 @@ void update(int idx,LL x) {
 		idx = idx + (idx & -idx);
 	}
 }
+
 std::vector<int> v[1010];
 void solve() {
 	int T;
@@ -59,8 +61,3 @@ void solve() {
 		for(int i = 0;i<1010;i++) { v[i].clear(); }
 	}
 }
-	
-I will work on 
-1. amf::handleAuthenticationResponse()
-2. amf::triggetSecurityModeCommand() 
-functions by tuesday 
