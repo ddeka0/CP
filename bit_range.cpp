@@ -1,22 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define LSOne(S) (S & (-S))
-typedef long long ll;
-ll B1[100005], B2[100005];
+typedef long long LL;
+LL B1[100005], B2[100005];
 int N;
-ll query(ll* ft, int b) {
-    ll sum = 0;
-    for (; b; b -= LSOne(b)) sum += ft[b];
+LL query(LL* ft, int b) {
+    LL sum = 0;
+    while(b > 0) {
+        sum += ft[b];
+        b = b - (b & (-b));
+    }
     return sum;
 }
-ll query(int b) {
+LL query(int b) {
     return query(B1, b) * b - query(B2, b);
 }
-ll range_query(int i, int j)    {
+LL range_query(int i, int j)    {
     return query(j) - query(i - 1);
 }
-void update(ll* ft, int k, ll v) {
-    for (; k <= N; k += LSOne(k)) ft[k] += v;
+void update(LL* ft, int k, ll v) {
+    while(k<=N) {
+        ft[k] += v;
+        k = k + k&(-k);
+    }
 }
 void range_update(int i, int j, ll v)   {
     update(B1, i, v);

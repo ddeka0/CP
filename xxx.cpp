@@ -1,58 +1,57 @@
 #include<bits/stdc++.h>
+#include <unistd.h>
 using namespace std;
 
-//int a[1000][1000],b[1000],dp[];
-
-int n,m;
-
-int solve(int j, int len,int c[],int dp[]){
-	
-	if(j>=len)
-		return 0;
-	if(j==len-1)
-		return c[j];
-	if(dp[j]!=-1)
-		return dp[j];
-	
-	dp[j]=max(c[j] + solve(j+2, len, c, dp ), solve(j+1 , len, c,dp));
-	//cout<<dp[j]<<" j "<<j<<endl;
-	return dp[j];
-}
-
-int main() {
-
-	cin>>n>>m;
-	while(n && m){
-
-		// int** a = (int**)malloc((n+1) * (m+1) * sizeof(int));
-		// int b=(int)malloc((n+1)*sizeof(int));
-		// int dp=(int)malloc(max(n+1,m+1)*sizeof(int)); 
-		int k=max(n,m);
-		int a[n+1][m+1], b[n+1], dp[k+1];
-
-
-	for (int i = 0; i < n; ++i)
+#define sd(a) scanf("%d",&a)
+#define ss(a) scanf("%s",&a)
+#define sl(a) scanf("%lld",&a)
+#define clr(a) memset(a,0,sizeof(a))
+#define debug(a) printf("check%d\n",a)
+#define F first
+#define S second
+#define MP make_pair
+#define PB push_back
+#define ll long long
+#define INF 1000000000000000000
+vector<int> digits;
+ll p10[20];
+int main()
+{
+	// freopen("A.in","r",stdin);
+	// freopen("A.out","w",stdout);
+	int t,i;
+	p10[0] = 1;
+	for(i=1;i<18;i++)
+		p10[i] = p10[i-1]*10;
+	sd(t);
+	for(int tt=1;tt<=t;tt++)
 	{
-		for (int j = 0; j < m; ++j)
+		ll n, n1,l = 0, r = 0;
+		digits.clear();
+		sl(n);
+		n1 = n;
+		while(n>0)
 		{
-			
-			cin>>a[i][j];
+			digits.PB(n%10);
+			n/=10;
 		}
+		for(i=(int)digits.size()-1;i>=0;i--)
+		{
+			if(digits[i]&1)
+				break;
+			l += digits[i]*p10[i];
+			r += digits[i]*p10[i];
+		}
+		if(i>=0)
+		{
+			l += (digits[i]-1)*p10[i];
+			r += (digits[i]+1)*p10[i];
+			if(digits[i] == 9)	r = INF;
+			i--;
+			for(;i>=0;i--)
+				l += 8*p10[i];
+		}
+		ll ans = min(llabs(n1-l),llabs(n1-r));
+		printf("Case #%d: %lld\n",tt,ans);
 	}
-
-	for (int i = 0; i < n; ++i)
-	{
-		memset(dp,-1,sizeof(int)*m);
-		b[i]=solve(0,m,a[i],dp);
-		//cout<<b[i]<<endl;
-	}
-	memset(dp,-1,sizeof(int)*n);
-	//cout<<b[0]<<" "<<b[1]<<" "<<b[2]<<endl;
-	cout<<solve(0,n,b,dp)<<endl;
-
-	cin>>n>>m;
-   }
-
-	return 0;
-
 }

@@ -6,7 +6,7 @@ int getSetBitsFromOneToN(int N) {
         if( (N&(two-1) ) > (two>>1) - 1  ) 
         
         	ans += (N&(two-1)) - (two>>1) + 1; 
-        
+
         two <<= 1; 
         
         n >>= 1; 
@@ -15,4 +15,3 @@ int getSetBitsFromOneToN(int N) {
 } 
 
 
-whi
