@@ -6,12 +6,15 @@ vector<pair<int,int>> loc;
 int dist[20][20];
 int dp[20][1<<12];
 int N;
+
 int recurse(int curr,unsigned int mask) {
 	if(__builtin_popcount(mask) == N+2) {
 		return dist[curr][1];
 	}
+	
 	if(dp[curr][mask] != -1) return dp[curr][mask];
 	int res = inf;
+	
 	for(int node = 0;node < N+2;node++) {
 		if( !(mask &(1<<node)) ) {
 			res = min(res, recurse(node,mask | (1<<node)) + dist[curr][node] );
@@ -42,6 +45,8 @@ int main() {
 			}
 		}
 
+		// this section calculated the dist[u][v]
+		// pair wise distances
 		for(int k = 0;k<N+2;k++) {
 			for(int i = 0;i<N+2;i++) {
 				for(int j = 0;j<N+2;j++) {
@@ -50,13 +55,6 @@ int main() {
 					dist[i][j] = min( dist[i][j], p + q);
 				}
 			}
-		}
-
-		for(int i = 0;i<N+2;i++) {
-			for(int j = 0;j<N+2;j++) {
-				cout << dist[i][j] <<" ";
-			}
-			cout << endl;
 		}
 
 		unsigned int mask = 0;

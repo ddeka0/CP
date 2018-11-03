@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 bool cycle = false;
 vector<int> g[20];
