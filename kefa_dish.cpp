@@ -4,7 +4,7 @@ int a[20];
 int c[20][20];
 long long dp[20][1<<20];
 int n,m,k;
-
+	
 long long recurse(int curr,unsigned int mask) {
 	if(__builtin_popcount(mask) == m) {
 		return 0;
