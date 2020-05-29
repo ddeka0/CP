@@ -49,7 +49,17 @@ int main() {
 		for(int idx = 0;idx<n;idx++) {
 			freq[idx%k][s[idx] - 'a']++; // all are lower case latter
 		}
-		auto ans_at_position = [k](int pos) {
+		auto ans_at_position = [k,n,&s](int pos) {
+			vector<int> freq(26,0);
+			for(int i = pos; i < n; i += k) {
+				freq[s[i] - 'a']++;
+			}
+			if(pos < k - 1 - pos) {
+				for(int i = k - 1 - pos; i < n; i += k) {
+					freq[s[i] - 'a']++;
+				}
+			}
+			
 			int mx_freq = -1;
 			int total_chars = 0;
 			for(char c = 'a'; c<='z'; c++) {

@@ -9,7 +9,9 @@
         "vector": "cpp",
         "initializer_list": "cpp",
         "valarray": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "algorithm": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
