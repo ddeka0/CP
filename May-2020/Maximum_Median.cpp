@@ -24,25 +24,17 @@ int main() {
     vector<int> v;
     int t;
     for(int i = 0;i<n;i++) {
-        cin >> t;
-        v.push_back(t); 
+        cin >> t; v.push_back(t); 
     }
     sort(v.begin(),v.end());
-    if(n == 1) {
-        return v[0] + k;
-    }
-    vector<long int> cs;
+    if(n == 1) { cout << v[0] + k << endl; return 0;}
+    vector<long long int> cs;
     cs.push_back(0);
     for(int i = n/2, j = 1; i < n-1; i++,j++) {
-        int val = (v[i+1] - v[i])*j + cs[j-1];
+        long long int val = (v[i+1] - v[i])*1LL*j + cs[j-1];
         cs.push_back(val);
     }
     auto pos = upper_bound(cs.begin(),cs.end(),k) - cs.begin();
-    // trace(pos);
-    if(pos == cs.size()) {
-        cout << v[n-1] + ((k - cs[pos-1])/pos) << endl;
-    }else {
-        cout << v[pos - 1 + n/2] + ((k - cs[pos-1])/pos) << endl;
-    }
+    cout << v[pos - 1 + n/2] + ((1LL*k - cs[pos-1])/pos) << endl;
     
 }
