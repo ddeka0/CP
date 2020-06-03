@@ -41,7 +41,7 @@ public:
         
         auto pivot = nums.begin() + mid;
         auto p = lower_bound(nums.begin(),pivot,target);
-        // trace()
+        
         if(p != nums.end())
         if(*p == target) {
             return p - nums.begin();
