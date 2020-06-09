@@ -30,6 +30,8 @@ int main() {
 
     pair<int,int> p;
     p.A = 1;
-    cout << p.A << endl;
 
+    cout << p.A << endl;
+    cout << INT_MAX << endl;
+    cout << UINT_MAX<< endl;
 }
