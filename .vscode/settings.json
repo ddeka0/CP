@@ -11,7 +11,13 @@
         "valarray": "cpp",
         "iostream": "cpp",
         "*.tcc": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "span": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
