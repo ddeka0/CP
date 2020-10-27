@@ -17,7 +17,8 @@
         "iterator": "cpp",
         "map": "cpp",
         "set": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "ostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
