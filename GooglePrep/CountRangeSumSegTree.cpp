@@ -70,12 +70,12 @@ public:
 		vector<long long int> Sorted;
 		Sorted.push_back(std::numeric_limits<long long>::min());
 		vector<long long> sums(nums.size() + 1,0LL);
-		Sorted.push_back(1LL*sums[0]);
+		Sorted.push_back(sums[0]);
 		for(int i = 1;i<=nums.size();i++) {
 			sums[i] = sums[i-1] + nums[i-1];
 			Sorted.push_back(sums[i]);
-			Sorted.push_back(lower + sums[i-1]);
-			Sorted.push_back(upper + sums[i-1] + 1);
+		    Sorted.push_back(lower + sums[i-1]);
+		    Sorted.push_back(upper + sums[i-1] + 1);
         }
 
 		std::sort(Sorted.begin(),Sorted.end()); // normalization done        
